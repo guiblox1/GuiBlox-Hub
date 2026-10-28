@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b16">
+  <meta name="description" content="GuiBloxYT — vídeos, Shorts e aventuras no Roblox. Entra no universo de gaming!">
+  <title>GuiBloxYT | Gaming Zone</title>
+  <style>
+    :root {
+      --bg: #080b16;
+      --panel: rgba(18, 24, 45, .82);
+      --panel-solid: #12182d;
+      --text: #f5f7ff;
+      --muted: #a7b0ca;
+      --cyan: #43e7ff;
+      --purple: #a66bff;
+      --pink: #ff4fc8;
+      --line: rgba(141, 164, 255, .18);
+      --shadow: 0 20px 70px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--text); background:
+        radial-gradient(ellipse at 15% 5%, rgba(86, 44, 180, .22), transparent 36rem),
+        radial-gradient(ellipse at 90% 25%, rgba(0, 196, 255, .13), transparent 34rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .noise { position: fixed; inset: 0; pointer-events: none; opacity: .12; z-index: -1;
+      background-image: radial-gradient(rgba(255,255,255,.35) .6px, transparent .6px); background-size: 5px 5px; }
+    .nav-wrap { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px);
+      background: rgba(8,11,22,.76); border-bottom: 1px solid var(--line); }
+    nav { max-width: 1180px; margin: auto; padding: 15px 22px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:-.04em; }
+    .brand-mark { display:grid; place-items:center; width:38px; height:38px; border-radius:12px;
+      background: linear-gradient(135deg,var(--cyan),var(--purple)); color:#080b16; font-size:19px;
+      box-shadow: 0 0 28px rgba(67,231,255,.28); }
+    .brand span:last-child { font-size: 1.04rem; }
+    .nav-links { display:flex; gap:25px; align-items:center; color:var(--muted); font-size:.91rem; }
+    .nav-links a:hover { color:var(--cyan); }
+    .nav-cta, .btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; border:0; cursor:pointer;
+      border-radius:12px; font-weight:800; transition:transform .2s, box-shadow .2s, background .2s; }
+    .nav-cta { padding:11px 15px; color:#06101a; background:var(--cyan); font-size:.88rem; }
+    .btn { padding:14px 19px; }
+    .btn:hover, .nav-cta:hover { transform:translateY(-3px); box-shadow:0 12px 35px rgba(67,231,255,.22); }
+    .btn-primary { color:#07101a; background:linear-gradient(110deg,var(--cyan),#8af6ff); }
+    .btn-ghost { border:1px solid var(--line); background:rgba(255,255,255,.035); color:var(--text); }
+    .hero { max-width:1180px; margin:auto; padding:90px 22px 75px; display:grid; grid-template-columns:1.05fr .95fr; gap:50px; align-items:center; min-height:620px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid rgba(67,231,255,.26);
+      border-radius:999px; color:var(--cyan); background:rgba(67,231,255,.06); font-size:.78rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .pulse { width:7px;height:7px;border-radius:50%;background:#68ffad;box-shadow:0 0 12px #68ffad; }
+    h1 { font-size:clamp(3.2rem,7vw,6.2rem); line-height:.92; letter-spacing:-.075em; margin:23px 0 20px; }
+    .gradient-text { background:linear-gradient(100deg,#fff 5%,var(--cyan) 45%,var(--purple) 88%); color:transparent; background-clip:text; -webkit-background-clip:text; }
+    .hero p { max-width:560px; font-size:1.1rem; line-height:1.75; color:var(--muted); margin:0 0 27px; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; }
+    .mini-stats { display:flex; gap:26px; flex-wrap:wrap; margin-top:36px; }
+    .stat strong { display:block; font-size:1.25rem; letter-spacing:-.03em; }
+    .stat span { display:block; margin-top:3px; color:var(--muted); font-size:.78rem; }
+    .hero-art { position:relative; min-height:410px; display:grid; place-items:center; }
+    .orbit { position:absolute; width:min(100%,440px); aspect-ratio:1; border:1px solid rgba(67,231,255,.22); border-radius:50%; animation:spin 26s linear infinite; }
+    .orbit:before,.orbit:after { content:""; position:absolute; width:12px;height:12px;border-radius:50%; background:var(--cyan); box-shadow:0 0 25px var(--cyan); }
+    .orbit:before { top:12%; left:15%; } .orbit:after { bottom:15%; right:9%; background:var(--pink); box-shadow:0 0 25px var(--pink); }
+    .orbit.two { width:min(82%,360px); border-color:rgba(166,107,255,.35); animation-direction:reverse; animation-duration:19s; }
+    .game-card { position:relative; width:min(100%,365px); aspect-ratio: .84; border-radius:28px; padding:24px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.18); background:linear-gradient(145deg,rgba(44,63,110,.92),rgba(23,18,53,.94) 60%,rgba(10,13,28,.98));
+      box-shadow:0 30px 90px rgba(0,0,0,.48),0 0 65px rgba(166,107,255,.16); transform:rotate(3deg); animation:float 5s ease-in-out infinite; }
+    .game-card:before { content:""; position:absolute; width:280px;height:280px; border-radius:50%; background:rgba(67,231,255,.18); filter:blur(8px); top:-110px; right:-90px; }
+    .card-top { position:relative; display:flex;justify-content:space-between;align-items:center; color:#c4d2ff; font-size:.73rem; font-weight:800; letter-spacing:.12em; }
+    .game-emblem { position:relative; display:grid; place-items:center; height:235px; font-size:8rem; filter:drop-shadow(0 12px 25px rgba(67,231,255,.24)); }
+    .pixel { position:absolute; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.06); border-radius:12px; transform:rotate(-12deg); }
+    .pixel.p1 { width:60px;height:60px;top:100px;left:5px; } .pixel.p2 { width:35px;height:35px;right:7px;bottom:105px; transform:rotate(19deg); }
+    .game-card h3 { position:relative; font-size:1.65rem; margin:0 0 6px; letter-spacing:-.05em; }
+    .game-card p { position:relative; font-size:.86rem; color:#b4bdd8; margin:0; }
+    .floating-tag { position:absolute; z-index:2; padding:12px 15px; border:1px solid var(--line); border-radius:14px; background:rgba(16,22,42,.9); box-shadow:var(--shadow); font-weight:800; font-size:.83rem; backdrop-filter:blur(12px); }
+    .tag-one { top:13%; right:-2%; animation:float 4s ease-in-out infinite; } .tag-two { bottom:12%; left:-4%; animation:float 4.8s ease-in-out infinite reverse; }
+    .tag-one span,.tag-two span { color:var(--cyan); }
+    section { max-width:1180px; margin:auto; padding:65px 22px; }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:22px; margin-bottom:27px; }
+    .kicker { color:var(--cyan); font-size:.76rem; font-weight:900; letter-spacing:.15em; text-transform:uppercase; }
+    h2 { font-size:clamp(2rem,4vw,3.2rem); letter-spacing:-.065em; margin:9px 0 0; }
+    .section-head p { color:var(--muted); max-width:440px; line-height:1.65; margin:0; }
+    .video-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .video-card { overflow:hidden; border-radius:19px; background:var(--panel); border:1px solid var(--line); transition:transform .25s,border-color .25s; }
+    .video-card:hover { transform:translateY(-7px); border-color:rgba(67,231,255,.55); }
+    .thumb { position:relative; aspect-ratio:16/9; display:grid; place-items:center; overflow:hidden; background:
+      radial-gradient(circle at 30% 25%,rgba(67,231,255,.34),transparent 28%),
+      radial-gradient(circle at 80% 80%,rgba(166,107,255,.42),transparent 36%),
+      linear-gradient(135deg,#202a54,#11162d); }
+    .thumb:before { content:""; position:absolute; inset:0; opacity:.22; background-image:linear-gradient(45deg,transparent 46%,rgba(255,255,255,.18) 47%,rgba(255,255,255,.18) 49%,transparent 50%); background-size:24px 24px; }
+    .play { position:relative; display:grid; place-items:center; width:58px;height:58px;border-radius:50%; color:#08111d; background:var(--cyan); box-shadow:0 0 35px rgba(67,231,255,.38); font-size:1.3rem; transition:transform .2s; }
+    .video-card:hover .play { transform:scale(1.12); }
+    .thumb-label { position:absolute; left:14px; top:14px; padding:6px 9px; border-radius:7px; background:rgba(5,8,18,.72); font-size:.7rem; font-weight:900; letter-spacing:.08em; }
+    .video-info { padding:17px; } .video-info h3 { margin:0 0 8px; font-size:1.05rem; letter-spacing:-.025em; }
+    .video-info p { margin:0; color:var(--muted); font-size:.86rem; line-height:1.55; }
+    .edit-note { margin-top:17px; color:var(--muted); font-size:.82rem; }
+    .edit-note code { color:var(--cyan); }
+    .shorts-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .short-card { min-height:210px; padding:18px; border-radius:18px; border:1px solid var(--line); background:linear-gradient(145deg,rgba(30,40,73,.9),rgba(14,18,35,.9)); display:flex; flex-direction:column; justify-content:space-between; transition:transform .2s; }
+    .short-card:hover { transform:translateY(-5px) rotate(-1deg); }
+    .short-icon { font-size:2rem; } .short-card h3 { margin:18px 0 7px; font-size:1.05rem; } .short-card p { color:var(--muted); font-size:.83rem; line-height:1.5; margin:0; }
+    .short-arrow { align-self:flex-end; color:var(--cyan); font-size:1.4rem; }
+    .about-box { position:relative; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:center; padding:clamp(25px,5vw,55px); border:1px solid var(--line); border-radius:28px;
+      background:linear-gradient(125deg,rgba(34,43,81,.8),rgba(15,19,39,.86)); }
+    .about-box:after { content:""; position:absolute; width:330px;height:330px; right:-130px;top:-180px; border-radius:50%; background:rgba(166,107,255,.18); filter:blur(8px); }
+    .about-copy,.about-points { position:relative; z-index:1; }
+    .about-copy p { color:var(--muted); line-height:1.8; }
+    .point { display:flex; gap:13px; align-items:start; padding:15px 0; border-bottom:1px solid var(--line); }
+    .point:last-child { border-bottom:0; } .point-icon { flex:0 0 38px; height:38px; display:grid;place-items:center; border-radius:12px; background:rgba(67,231,255,.1); color:var(--cyan); }
+    .point strong { display:block; margin-bottom:4px; } .point span { color:var(--muted); font-size:.86rem; line-height:1.5; }
+    .join { text-align:center; padding:72px 22px 85px; }
+    .join-inner { max-width:760px; margin:auto; padding:48px 24px; border-radius:28px; border:1px solid rgba(67,231,255,.24);
+      background:radial-gradient(ellipse at 50% 0%,rgba(67,231,255,.12),transparent 65%),rgba(18,24,45,.7); }
+    .join h2 { margin:12px 0; } .join p { color:var(--muted); line-height:1.7; margin:0 auto 24px; max-width:540px; }
+    footer { border-top:1px solid var(--line); padding:24px 22px; color:var(--muted); font-size:.82rem; }
+    .footer-inner { max-width:1180px; margin:auto; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+    .socials { display:flex; gap:16px; } .socials a:hover { color:var(--cyan); }
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    @keyframes float { 0%,100% { translate:0 0; } 50% { translate:0 -11px; } }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation:none!important; scroll-behavior:auto!important; transition:none!important; } .reveal { opacity:1; transform:none; } }
+    @media (max-width:850px) { .hero { grid-template-columns:1fr; padding-top:65px; gap:15px; } .hero-art { min-height:440px; } .video-grid { grid-template-columns:repeat(2,1fr); } .shorts-strip { grid-template-columns:repeat(2,1fr); } .about-box { grid-template-columns:1fr; } .section-head { align-items:start; flex-direction:column; } }
+    @media (max-width:560px) { nav { padding:12px 16px; } .nav-links { gap:12px; font-size:.8rem; } .nav-links a:nth-child(2),.nav-links a:nth-child(3) { display:none; } .nav-cta { padding:10px 11px; font-size:.78rem; } .hero { padding:55px 18px 40px; } h1 { font-size:3.45rem; } .hero p { font-size:1rem; } .hero-art { min-height:370px; } .game-card { max-width:300px; } .game-emblem { height:190px; font-size:6.5rem; } .floating-tag { font-size:.72rem; } .tag-one { right:0; } .tag-two { left:0; } section { padding:48px 18px; } .video-grid { grid-template-columns:1fr; } .shorts-strip { gap:10px; } .short-card { min-height:190px; padding:14px; } .mini-stats { gap:18px; } .join { padding:45px 18px 55px; } }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="nav-wrap">
+    <nav aria-label="Navegação principal">
+      <a class="brand" href="#inicio" aria-label="GuiBloxYT início"><span class="brand-mark">G</span><span>GuiBlox<span style="color:var(--cyan)">YT</span></span></a>
+      <div class="nav-links">
+        <a href="#videos">Vídeos</a><a href="#shorts">Shorts</a><a href="#sobre">Sobre</a>
+      </div>
+      <a class="nav-cta" href="https://www.youtube.com/@GuiBloxYT" target="_blank" rel="noopener noreferrer">▶ Subscrever</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span class="pulse"></span> A tua próxima aventura começa aqui</div>
+        <h1>WELCOME TO<br><span class="gradient-text">GUIBLOXYT</span></h1>
+        <p>Roblox, Brookhaven e momentos inesperados. Entra na zona de gaming, descobre vídeos novos e prepara-te para algumas aventuras caóticas. 🎮</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#videos">Explorar vídeos <span aria-hidden="true">↘</span></a>
+          <a class="btn btn-ghost" href="https://www.youtube.com/@GuiBloxYT" target="_blank" rel="noopener noreferrer">▶ Ver canal</a>
+        </div>
+        <div class="mini-stats">
+          <div class="stat"><strong>ROBLOX</strong><span>O universo principal</span></div>
+          <div class="stat"><strong>SHORTS</strong><span>Momentos rápidos</span></div>
+          <div class="stat"><strong>GG!</strong><span>Diversão primeiro</span></div>
+        </div>
+      </div>
+      <div class="hero-art reveal" aria-label="Ilustração de gaming neon">
+        <div class="orbit"></div><div class="orbit two"></div>
+        <div class="floating-tag tag-one">⚡ <span>GAMING MODE</span></div>
+        <div class="floating-tag tag-two">🎬 NOVOS VÍDEOS</div>
+        <div class="game-card">
+          <div class="card-top"><span>PLAYER PROFILE</span><span>● ONLINE</span></div>
+          <div class="pixel p1"></div><div class="pixel p2"></div>
+          <div class="game-emblem" aria-hidden="true">🎮</div>
+          <h3>PLAYER: GUI</h3>
+          <p>Roblox adventures • Brookhaven vibes</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="videos">
+      <div class="section-head reveal">
+        <div><div class="kicker">▶ Em destaque</div><h2>Vídeos recentes</h2></div>
+        <p>Os vídeos que não vais querer perder. Liga-te ao canal para veres os próximos uploads.</p>
+      </div>
+      <div class="video-grid">
+        <a class="video-card reveal" href="https://www.youtube.com/@GuiBloxYT" target="_blank" rel="noopener noreferrer">
+          <div class="thumb"><span class="thumb-label">ROBLOX</span><span class="play">▶</span></div>
+          <div class="video-info"><h3>A próxima aventura começa aqui</h3><p>Vai ao canal e descobre os vídeos mais recentes do GuiBloxYT.</p></div>
+        </a>
+        <a class="video-card reveal" href="https://www.youtube.com/@GuiBloxYT/shorts" target="_blank" rel="noopener noreferrer">
+          <div class="thumb"><span class="thumb-label">SHORTS</span><span class="play">▶</span></div>
+          <div class="video-info"><h3>Momentos caóticos em poucos segundos</h3><p>Clips rápidos, surpresas e situações inesperadas.</p></div>
+        </a>
+        <a class="video-card reveal" href="https://www.youtube.com/@GuiBloxYT" target="_blank" rel="noopener noreferrer">
+          <div class="thumb"><span class="thumb-label">BROOKHAVEN</span><span class="play">▶</span></div>
+          <div class="video-info"><h3>Explora o mundo de Brookhaven</h3><p>Segredos, aventuras e ideias para o próximo vídeo.</p></div>
+        </a>
+      </div>
+      <p class="edit-note">💡 Estas são caixas iniciais. Mais abaixo tens instruções para pôr as miniaturas e os links dos teus vídeos reais.</p>
+    </section>
+
+    <section id="shorts">
+      <div class="section-head reveal">
+        <div><div class="kicker">⚡ Rápido e divertido</div><h2>A zona dos Shorts</h2></div>
+        <p>Um clique e estás no feed de Shorts. Perfeito para quem só tem uns segundos.</p>
+      </div>
+      <div class="shorts-strip">
+        <a class="short-card reveal" href="https://www.youtube.com/@GuiBloxYT/shorts" target="_blank" rel="noopener noreferrer"><span class="short-icon">🚗</span><div><h3>Caos sobre rodas</h3><p>Velocidade, curvas e momentos inesperados.</p></div><span class="short-arrow">↗</span></a>
+        <a class="short-card reveal" href="https://www.youtube.com/@GuiBloxYT/shorts" target="_blank" rel="noopener noreferrer"><span class="short-icon">🏡</span><div><h3>Brookhaven vibes</h3><p>O que será que acontece a seguir?</p></div><span class="short-arrow">↗</span></a>
+        <a class="short-card reveal" href="https://www.youtube.com/@GuiBloxYT/shorts" target="_blank" rel="noopener noreferrer"><span class="short-icon">😱</span><div><h3>Plot twist!</h3><p>Quando o jogo não corre como planeado.</p></div><span class="short-arrow">↗</span></a>
+        <a class="short-card reveal" href="https://www.youtube.com/@GuiBloxYT/shorts" target="_blank" rel="noopener noreferrer"><span class="short-icon">🎮</span><div><h3>Mais um round</h3><p>Entra no canal e vê os clips mais recentes.</p></div><span class="short-arrow">↗</span></a>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="about-box reveal">
+        <div class="about-copy">
+          <div class="kicker">👾 Sobre o canal</div>
+          <h2>Não é só jogar.<br><span class="gradient-text">É criar momentos.</span></h2>
+          <p>O GuiBloxYT é um cantinho para partilhar aventuras de gaming, especialmente no Roblox e em Brookhaven. O objetivo? Divertir, surpreender e fazer cada vídeo valer a pena.</p>
+          <a class="btn btn-primary" href="https://www.youtube.com/@GuiBloxYT" target="_blank" rel="noopener noreferrer">Conhecer o canal ↗</a>
+        </div>
+        <div class="about-points">
+          <div class="point"><div class="point-icon">🎮</div><div><strong>Gaming à tua maneira</strong><span>Roblox, roleplay e experiências divertidas.</span></div></div>
+          <div class="point"><div class="point-icon">⚡</div><div><strong>Shorts sem perder tempo</strong><span>Momentos rápidos para ver em qualquer pausa.</span></div></div>
+          <div class="point"><div class="point-icon">🚀</div><div><strong>A comunidade cresce contigo</strong><span>Segue o canal e acompanha as próximas aventuras.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="join">
+      <div class="join-inner reveal">
+        <div class="kicker">A missão está lançada</div>
+        <h2>Pronto para entrar no jogo?</h2>
+        <p>Abre o canal GuiBloxYT, vê os últimos vídeos e subscreve para não perderes as próximas aventuras.</p>
+        <a class="btn btn-primary" href="https://www.youtube.com/@GuiBloxYT" target="_blank" rel="noopener noreferrer">▶ Subscrever no YouTube</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> GuiBloxYT · Feito para a gaming zone 🎮</div>
+      <div class="socials"><a href="https://www.youtube.com/@GuiBloxYT" target="_blank" rel="noopener noreferrer">YouTube ↗</a><a href="#inicio">Voltar ao topo ↑</a></div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+  </script>
+</body>
+</html>
